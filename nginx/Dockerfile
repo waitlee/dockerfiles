@@ -1,6 +1,6 @@
 FROM waitlee/ubuntu:14.04
 
-MAINTAINER <waitlee> liduabc2009@163.com
+MAINTAINER <waitlee> liduabc2012@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
 

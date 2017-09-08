@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-MAINTAINER <waitlee> liduabc2009@163.com
+MAINTAINER <waitlee> liduabc2012@gmail.com
 
 # edit contents of /usr/sbin/policy-rc.d, to replace exit 101 by exit 0.
 RUN sed -i "s/101/0/g" /usr/sbin/policy-rc.d
