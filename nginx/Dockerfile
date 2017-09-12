@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
     && apt-get install -y nginx
-    && rm -rf /var/lib/apt/lists/*
+
+RUN rm -rf /var/lib/apt/lists/*
 RUN mkdir /data \
     && mkdir /data/www \
     && chown -R www-data:www-data /data
