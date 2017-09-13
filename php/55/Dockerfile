@@ -1,6 +1,6 @@
 FROM waitlee/ubuntu:14.04
 
-MAINTAINER <waitlee> liduabc2012@gmail.com
+MAINTAINER waitlee <liduabc2012@gmail.com>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -12,6 +12,7 @@ RUN apt-get update \
     php5-curl \
     php5-mcrypt \
     php5-memcache \
+    php5-memcached \
     php5-sqlite \
     php5-redis \
     php5-mongo \
