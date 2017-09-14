@@ -6,14 +6,14 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=123123
     volumes:
-      - ~/data/mysql:/var/lib/mysql
+      - /path/to/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
   mongodb:
     # image: waitlee/mongodb:initial
     build: ./mongodb
     volumes:
-      -  ~/data/mongo:/data/db
+      -  /path/to/mongo:/data/db
     expose:
       - "27017"
   memcached:
@@ -25,7 +25,7 @@ services:
     # image: waitlee/php55:initial
     build: ./php/55/
     volumes:
-      - ~/development/pec:/data/www
+      - /path/to/www:/data/www
     links:
       - mysql:mysql
       - mongodb:mongodb
@@ -38,7 +38,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ~/development/pec/conf/nginx/sites-enabled:/etc/nginx/sites-enabled
-      - ~/development/pec:/data/www
+      - /path/to/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - /path/to/www:/data/www
     links:
       - phpfpm:phpfpm
