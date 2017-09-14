@@ -1,0 +1,44 @@
+version: '2.0'
+services:
+  mysql_n:
+    # image: waitlee/mysql:initial
+    build: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123123
+    volumes:
+      - ~/data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  mongodb_n:
+    # image: waitlee/mongodb:initial
+    build: ./mongodb
+    volumes:
+      -  ~/data/mongo:/data/db
+    expose:
+      - "27017"
+  memcache_n:
+    # image: waitlee/memcache:initial
+    build: ./memcache
+    expose:
+      - "11211"
+  phpfpm_n:
+    # image: waitlee/php55:initial
+    build: ./php55
+    volumes:
+      - ~/development/pec:/data/www
+    links:
+      - mysql_n:mysql
+      - mongodb_n:mongodb
+      - memcache_n:memcache
+    expose:
+      - "9000"
+  nginx:
+    # image: waitlee/nginx:initial
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ~/development/pec/conf/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ~/development/pec:/data/www
+    links:
+      - phpfpm_n:phpfpm
