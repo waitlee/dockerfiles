@@ -1,6 +1,6 @@
 version: '2.0'
 services:
-  mysql_n:
+  mysql:
     # image: waitlee/mysql:initial
     build: ./mysql
     environment:
@@ -9,27 +9,27 @@ services:
       - ~/data/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
-  mongodb_n:
+  mongodb:
     # image: waitlee/mongodb:initial
     build: ./mongodb
     volumes:
       -  ~/data/mongo:/data/db
     expose:
       - "27017"
-  memcache_n:
-    # image: waitlee/memcache:initial
-    build: ./memcache
+  memcached:
+    # image: waitlee/memcached:initial
+    build: ./memcached
     expose:
       - "11211"
-  phpfpm_n:
+  phpfpm:
     # image: waitlee/php55:initial
     build: ./php55
     volumes:
       - ~/development/pec:/data/www
     links:
-      - mysql_n:mysql
-      - mongodb_n:mongodb
-      - memcache_n:memcache
+      - mysql:mysql
+      - mongodb:mongodb
+      - memcached:memcache
     expose:
       - "9000"
   nginx:
@@ -41,4 +41,4 @@ services:
       - ~/development/pec/conf/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ~/development/pec:/data/www
     links:
-      - phpfpm_n:phpfpm
+      - phpfpm:phpfpm
