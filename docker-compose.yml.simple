@@ -23,7 +23,7 @@ services:
       - "11211"
   phpfpm:
     # image: waitlee/php55:initial
-    build: ./php55
+    build: ./php/55/
     volumes:
       - ~/development/pec:/data/www
     links:
