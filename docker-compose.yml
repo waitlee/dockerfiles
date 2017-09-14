@@ -33,7 +33,7 @@ services:
     expose:
       - "9000"
   nginx:
-    image: waitlee/nginx:initial
+    # image: waitlee/nginx:initial
     build: ./nginx
     ports:
       - "80:80"
